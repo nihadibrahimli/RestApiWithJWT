@@ -1,0 +1,29 @@
+version: '3'
+services:
+  garbags-db-container:
+    container_name: garbags-db-container
+    image: mysql/mysql-server:5.7
+    environment:
+      MYSQL_DATABASE: garbagsservice
+      MYSQL_ROOT_PASSWORD: 23secretpass98p
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - "3306:3306"
+    restart: always
+    networks:
+      - backend
+
+  garbags_backend_app:
+    container_name: garbags-app
+    restart: always
+    image: garbags-backend
+    expose:
+      - "8080"
+    ports:
+      - "8080:8080"
+    networks:
+      - backend
+    depends_on:
+      - garbags-db-container
+networks:
+  backend:
