@@ -1,4 +1,4 @@
-# Application guide
+# How to
 
 ## Installation
 
